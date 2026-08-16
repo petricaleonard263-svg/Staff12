@@ -1,8 +1,8 @@
 /**
  * @name VelvetRose V1 (RGB Edition - Ultimate Girls Theme)
  * @author GameZoneStudios / Limonade
- * @version 1.2.0
- * @description Temă complet mov, elegantă, cu flori plutitoare animate, efecte RGB, glow și un design de fete absolut superb!
+ * @version 1.3.0
+ * @description Temă complet mov, elegantă, cu imagini PNG cu flori plutitoare, efecte de gravitație random, glow și design superb!
  * @source https://github.com/GameZoneStudios/VelvetRose
  * @website https://gamezonestudios.com
  * @invite dHaSxn3
@@ -10,7 +10,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Dancing+Script:wght@700&display=swap');
 
-/* --- ANIMAȚII PENTRU FLORI ȘI RGB --- */
+/* --- ANIMAȚII PENTRU FLORI PNG ȘI GRAVIZAȚIE RANDOM --- */
 @keyframes vr-channel-select{from{right:100%}to{right:0}}
 @keyframes vr-card-loading{0%{opacity:.66}50%{opacity:.33}100%{opacity:.66}}
 
@@ -31,18 +31,39 @@
   }
 }
 
-@keyframes floatFlower1 {
-  0% { transform: translateY(110vh) translateX(0vw) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.8; }
-  90% { opacity: 0.8; }
-  100% { transform: translateY(-10vh) translateX(15vw) rotate(360deg); opacity: 0; }
+/* Animație de gravitație/cădere și plutire random pentru florile PNG */
+@keyframes randomGravityFlower1 {
+  0% {
+    transform: translateY(-10vh) translateX(0vw) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(110vh) translateX(18vw) rotate(360deg) scale(1.1);
+    opacity: 0;
+  }
 }
 
-@keyframes floatFlower2 {
-  0% { transform: translateY(110vh) translateX(0vw) rotate(0deg); opacity: 0; }
-  15% { opacity: 0.7; }
-  85% { opacity: 0.7; }
-  100% { transform: translateY(-10vh) translateX(-15vw) rotate(-360deg); opacity: 0; }
+@keyframes randomGravityFlower2 {
+  0% {
+    transform: translateY(-10vh) translateX(0vw) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) translateX(-22vw) rotate(-360deg) scale(0.9);
+    opacity: 0;
+  }
 }
 
 :root {
@@ -61,7 +82,7 @@
   --background-shading-percent: 0.85;
 }
 
-/* --- FLORI PLUTITOARE ANIMATE ÎN BACKGROUND --- */
+/* --- FLORI PNG IMPORTATE DE PE GOOGLE CU EFECT DE GRAVIZAȚIE --- */
 .app__160d8::after {
   content: "";
   position: fixed;
@@ -73,33 +94,38 @@
   z-index: 99999;
   overflow: hidden;
   background-image: 
-    radial-gradient(circle, rgba(244,114,182,0.8) 3px, transparent 4px),
-    radial-gradient(circle, rgba(216,180,254,0.9) 4px, transparent 5px),
-    radial-gradient(circle, rgba(232,121,249,0.7) 2px, transparent 3px),
-    radial-gradient(circle, rgba(251,207,232,0.8) 5px, transparent 6px);
-  background-size: 150px 150px, 220px 220px, 180px 180px, 260px 260px;
-  background-position: 0 0, 50px 80px, 100px 40px, 30px 120px;
-  animation: floatFlower1 18s linear infinite;
+    url('https://images.vexels.com/media/users/3/153177/isolated/preview/d206f366e60b73c24237f37435f3d4c0-flower-blossom-petal-flat-by-vexels.png'),
+    url('https://static.vecteezy.com/system/resources/thumbnails/029/335/518/small_2x/pink-flower-petals-falling-down-isolated-on-transparent-background-free-png.png'),
+    url('https://png.pngtree.com/png-clipart/20230411/original/pngtree-pink-flower-petals-falling-png-image_9061030.png');
+  background-size: 45px 45px, 60px 60px, 50px 50px;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: 15vw -10vh, 50vw -10vh, 85vw -10vh;
+  animation: randomGravityFlower1 12s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 
 .app__160d8::before {
-  content: "🌸 🌷 🌺 🌸 💖 🌷 🌸";
+  content: "";
   position: fixed;
-  bottom: -20px;
+  top: 0;
   left: 0;
   width: 100vw;
-  font-size: 24px;
-  letter-spacing: 120px;
-  white-space: nowrap;
+  height: 100vh;
   pointer-events: none;
   z-index: 99998;
-  opacity: 0.35;
-  animation: floatFlower2 14s ease-in-out infinite alternate;
+  overflow: hidden;
+  background-image: 
+    url('https://images.vexels.com/media/users/3/153177/isolated/preview/d206f366e60b73c24237f37435f3d4c0-flower-blossom-petal-flat-by-vexels.png'),
+    url('https://static.vecteezy.com/system/resources/thumbnails/029/335/518/small_2x/pink-flower-petals-falling-down-isolated-on-transparent-background-free-png.png');
+  background-size: 55px 55px, 40px 40px;
+  background-repeat: no-repeat, no-repeat;
+  background-position: 30vw -10vh, 70vw -10vh;
+  animation: randomGravityFlower2 16s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation-delay: 4s;
 }
 
-/* --- STILIZARE GENERALĂ MOV & FEMININ --- */
+/* --- STILIZARE GENERALĂ MOV PUR & FEMININ --- */
 .info__2debe::after{
-    content:"VelvetRose (Ultimate Girls Edition)" " " "1.2.0";
+    content:"VelvetRose (Ultimate Girls Edition)" " " "1.3.0";
     color:var(--text-muted);
     font-size:12px;
     line-height:1.3333333333;
@@ -119,7 +145,7 @@
 }
 
 :is(.theme-dark,.theme-light):not(.platform-osx) .leading_c38106::after{
-    content:"1.2.0";
+    content:"1.3.0";
     position:static;
     margin-top:-5px;
     margin-left:5px;
