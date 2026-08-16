@@ -1,8 +1,8 @@
 /**
- * @name VelvetRose V1 (Pure Purple Edition - ClearVision Addon)
+ * @name VelvetRose V1 (Pure Girls Edition - ClearVision Addon)
  * @author GameZoneStudios / Limonade
- * @version 2.0.0
- * @description Addon compatibil cu VelvetRose pentru BetterDiscord, în tonuri de mov și cu animații fine.
+ * @version 3.0.0
+ * @description Addon complet compatibil cu VelvetRose pentru BetterDiscord, finisat în nuanțe profunde de mov și roz feminin.
  */
 
 @keyframes cv-channel-select{from{right:100%}to{right:0}}
@@ -11,8 +11,8 @@
 .visual-refresh .bd-store-card{
   background:var(--hsl-card-shading);
   border:1px solid rgba(0,0,0,0);
-  border-radius:12px;
-  transition:all .2s ease;
+  border-radius:14px;
+  transition:all .25s ease;
 }
 .visual-refresh .bd-store-card:hover{
   background:var(--hsl-card-shading);
@@ -24,7 +24,7 @@
 .visual-refresh .bd-addon-store-card{
   background:var(--hsl-card-shading);
   border:1px solid rgba(0,0,0,0);
-  border-radius:12px;
+  border-radius:14px;
 }
 .visual-refresh .bd-addon-store-card:hover{
   background:var(--hsl-card-shading);
@@ -39,8 +39,8 @@
 .visual-refresh .bd-addon-card{
   background:var(--hsl-card-shading);
   border:2px solid rgba(0,0,0,0);
-  border-radius:12px;
-  transition:all .2s ease;
+  border-radius:14px;
+  transition:all .25s ease;
 }
 .visual-refresh .bd-addon-card:hover{
   background:var(--hsl-card-shading);
@@ -53,7 +53,7 @@
 }
 .visual-refresh .bd-notification{
   background:var(--hsl-card-shading);
-  border-radius:12px;
+  border-radius:14px;
 }
 .visual-refresh .bd-notification-footer{
   background:rgba(0,0,0,0);
@@ -61,29 +61,29 @@
 .visual-refresh .bd-modal-root{
   background:var(--hsl-popout-shading);
   border:2px solid var(--hsl-main-color);
-  border-radius:16px;
-  box-shadow:0 10px 40px rgba(168, 85, 247, 0.3);
+  border-radius:18px;
+  box-shadow:0 15px 45px rgba(192, 132, 252, 0.4);
 }
 .visual-refresh .bd-modal-footer{
   background:rgba(0,0,0,0);
 }
 .visual-refresh .bd-button-filled.bd-button-color-primary{
-  border-radius:8px;
+  border-radius:10px;
   background:var(--hsl-main-color);
   border-color:rgba(0,0,0,0);
-  transition:all .2s ease;
+  transition:all .25s ease;
 }
 .visual-refresh .bd-button-filled.bd-button-color-primary:hover,
 .visual-refresh .bd-button-filled.bd-button-color-primary:active{
   background:var(--hsl-hover-color);
   border-color:rgba(0,0,0,0);
   animation:purple-glow-pulse 1.5s infinite;
-  transform:translateY(-1px);
+  transform:translateY(-2px);
 }
 .visual-refresh .bd-addon-error-icon{
   background:var(--hsl-main-color);
 }
 .visual-refresh .bd-addon-error{
   border:1px solid var(--hsl-main-color);
-  border-radius:8px;
+  border-radius:10px;
 }
