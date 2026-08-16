@@ -1,8 +1,8 @@
 /**
  * @name VelvetRose V1 (RGB Edition - ClearVision Addon)
  * @author GameZoneStudios / Limonade
- * @version 1.1.0
- * @description Addon compatibil cu VelvetRose pentru BetterDiscord, adaptat stilului RGB și mov.
+ * @version 1.2.0
+ * @description Addon compatibil cu VelvetRose pentru BetterDiscord, adaptat stilului mov, RGB și flori plutitoare.
  */
 
 @keyframes cv-channel-select{from{right:100%}to{right:0}}
@@ -11,15 +11,18 @@
 .visual-refresh .bd-store-card{
   background:var(--hsl-card-shading);
   border:1px solid rgba(0,0,0,0);
+  border-radius:12px;
 }
 .visual-refresh .bd-store-card:hover{
   background:var(--hsl-card-shading);
   box-shadow:none;
   border-color:var(--hsl-main-color);
+  animation:rgb-glow-pulse 1.5s infinite;
 }
 .visual-refresh .bd-addon-store-card{
   background:var(--hsl-card-shading);
   border:1px solid rgba(0,0,0,0);
+  border-radius:12px;
 }
 .visual-refresh .bd-addon-store-card:hover{
   background:var(--hsl-card-shading);
@@ -29,33 +32,39 @@
 .visual-refresh .bd-addon-store-card .bd-addon-store-card-tag{
   background:rgba(0,0,0,0);
   border:1px solid var(--hsl-main-color);
+  border-radius:6px;
 }
 .visual-refresh .bd-addon-card{
   background:var(--hsl-card-shading);
   border:2px solid rgba(0,0,0,0);
+  border-radius:12px;
 }
 .visual-refresh .bd-addon-card:hover{
   background:var(--hsl-card-shading);
   border-color:var(--hsl-main-color);
+  animation:rgb-glow-pulse 1.5s infinite;
 }
 .visual-refresh .bd-addon-header{
   background:var(--hsl-card-shading);
 }
 .visual-refresh .bd-notification{
   background:var(--hsl-card-shading);
+  border-radius:12px;
 }
 .visual-refresh .bd-notification-footer{
   background:rgba(0,0,0,0);
 }
 .visual-refresh .bd-modal-root{
-  background:var(--hsl-card-shading);
+  background:var(--hsl-popout-shading);
   border:2px solid var(--hsl-main-color);
+  border-radius:16px;
+  box-shadow:0 10px 40px rgba(217, 70, 239, 0.3);
 }
 .visual-refresh .bd-modal-footer{
   background:rgba(0,0,0,0);
 }
 .visual-refresh .bd-button-filled.bd-button-color-primary{
-  border-radius:4px;
+  border-radius:8px;
   background:var(--hsl-main-color);
   border-color:rgba(0,0,0,0);
 }
@@ -70,4 +79,5 @@
 }
 .visual-refresh .bd-addon-error{
   border:1px solid var(--hsl-main-color);
+  border-radius:8px;
 }
