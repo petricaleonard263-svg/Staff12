@@ -17,12 +17,22 @@ class StatusCog(commands.Cog):
     async def status(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
 
-        try:
-            res = requests.get(URL, headers=HEADERS, timeout=4)
-            if res.status_code != 200:
-                await interaction.followup.send("Nu s-au putut prelua datele din cloud.", ephemeral=True)
-                return
+        res = None
+        for _ in range(3):
+            try:
+                r = requests.get(URL, headers=HEADERS, timeout=4)
+                if r.status_code == 200:
+                    res = r
+                    break
+            except Exception:
+                pass
+            time.sleep(0.5)
 
+        if not res or res.status_code != 200:
+            await interaction.followup.send("❌ Nu s-au putut prelua datele din cloud. Încearcă din nou.", ephemeral=True)
+            return
+
+        try:
             resp_json = res.json()
             pc_data = resp_json.get("record", resp_json)
             if not isinstance(pc_data, dict):
