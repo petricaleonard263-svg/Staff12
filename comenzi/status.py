@@ -20,10 +20,14 @@ class StatusCog(commands.Cog):
         try:
             res = requests.get(URL, headers=HEADERS, timeout=5)
             if res.status_code != 200:
-                await interaction.followup.send("❌ Nu s-au putut prelua datele din cloud.", ephemeral=True)
+                await interaction.followup.send(f"❌ Nu s-au putut prelua datele din cloud. (Cod: {res.status_code})", ephemeral=True)
                 return
 
-            pc_data = res.json().get("record", {})
+            resp_json = res.json()
+            pc_data = resp_json.get("record", resp_json)
+            if not isinstance(pc_data, dict):
+                pc_data = {}
+
             embed = discord.Embed(title="🖥️ Stare PC-uri Conectate", color=discord.Color.green())
             acum = time.time()
 
@@ -32,7 +36,6 @@ class StatusCog(commands.Cog):
             else:
                 for nume, info in pc_data.items():
                     ts = info.get("timestamp", 0) if isinstance(info, dict) else 0
-                    # Dacă calculatorul a trimis semnal în ultimele 45 de secunde, apare Online
                     stare = "🟢 Online" if (acum - ts <= 45) else "🔴 Offline"
                     embed.add_field(name=nume, value=stare, inline=True)
 
