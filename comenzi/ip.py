@@ -12,7 +12,7 @@ class IpCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="ip", description="Afișează detaliile de rețea (IPv4 / LAN și IP Public) pentru PC-uri.")
+    @app_commands.command(name="ip", description="Afișează IPv4 (LAN) și IP-ul Public pentru PC-uri.")
     async def ip(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
 
@@ -27,7 +27,7 @@ class IpCog(commands.Cog):
             if not isinstance(pc_data, dict):
                 pc_data = {}
 
-            embed = discord.Embed(title="🌐 Informații Rețea PC-uri", color=discord.Color.orange())
+            embed = discord.Embed(title="🌐 Informații Rețea & IP-uri", color=discord.Color.orange())
 
             if not pc_data:
                 embed.description = "Niciun PC înregistrat momentan."
