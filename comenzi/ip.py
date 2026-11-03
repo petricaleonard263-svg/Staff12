@@ -2,6 +2,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 import requests
+import time
 
 BIN_ID = "6ae95ee3ac6210605a679435"
 API_KEY = "$2a$10$pXpnrii6P4eFEwd5JS9UP.BCpv8ocjkYM0MgkLju6zUHdwyayfKm"
@@ -16,12 +17,22 @@ class IpCog(commands.Cog):
     async def ip(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
 
-        try:
-            res = requests.get(URL, headers=HEADERS, timeout=4)
-            if res.status_code != 200:
-                await interaction.followup.send("Nu s-au putut prelua datele din cloud.", ephemeral=True)
-                return
+        res = None
+        for _ in range(3):
+            try:
+                r = requests.get(URL, headers=HEADERS, timeout=4)
+                if r.status_code == 200:
+                    res = r
+                    break
+            except Exception:
+                pass
+            time.sleep(0.5)
 
+        if not res or res.status_code != 200:
+            await interaction.followup.send("❌ Nu s-au putut prelua datele din cloud. Încearcă din nou.", ephemeral=True)
+            return
+
+        try:
             resp_json = res.json()
             pc_data = resp_json.get("record", resp_json)
             if not isinstance(pc_data, dict):
