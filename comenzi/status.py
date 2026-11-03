@@ -5,7 +5,7 @@ import requests
 import time
 
 BIN_ID = "6ae95ee3ac6210605a679435"
-API_KEY = "$2a$10$pXpnrii6P4eFEwd5JS9UP.BCpv8ocjkYMQ0MgkLju6zuHdwyayfKm"
+API_KEY = "$2a$10$pXpnrii6P4eFEwd5JS9UP.BCpv8ocjkYM0MgkLju6zUHdwyayfKm"
 URL = f"https://api.jsonbin.io/v3/b/{BIN_ID}"
 HEADERS = {"X-Master-Key": API_KEY}
 
@@ -13,14 +13,14 @@ class StatusCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="status", description="Verifică statusul calculatoarelor online.")
+    @app_commands.command(name="status", description="Afișează doar calculatoarele online în rețea.")
     async def status(self, interaction: discord.Interaction):
         await interaction.response.defer(ephemeral=True)
 
         try:
-            res = requests.get(URL, headers=HEADERS, timeout=5)
+            res = requests.get(URL, headers=HEADERS, timeout=4)
             if res.status_code != 200:
-                await interaction.followup.send(f"❌ Nu s-au putut prelua datele din cloud. (Cod: {res.status_code})", ephemeral=True)
+                await interaction.followup.send("❌ Nu s-au putut prelua datele din cloud.", ephemeral=True)
                 return
 
             resp_json = res.json()
@@ -28,16 +28,20 @@ class StatusCog(commands.Cog):
             if not isinstance(pc_data, dict):
                 pc_data = {}
 
-            embed = discord.Embed(title="🖥️ Stare PC-uri Conectate", color=discord.Color.green())
+            embed = discord.Embed(title="🟢 PC-uri Active Online", color=discord.Color.green())
             acum = time.time()
+            online_count = 0
 
-            if not pc_data:
-                embed.description = "Niciun PC înregistrat."
-            else:
-                for nume, info in pc_data.items():
-                    ts = info.get("timestamp", 0) if isinstance(info, dict) else 0
-                    stare = "🟢 Online" if (acum - ts <= 45) else "🔴 Offline"
-                    embed.add_field(name=nume, value=stare, inline=True)
+            for nume, info in pc_data.items():
+                if isinstance(info, dict):
+                    ts = info.get("timestamp", 0)
+                    if acum - ts <= 15:
+                        online_count += 1
+                        embed.add_field(name=f"🖥️ {nume}", value="🟢 Online", inline=False)
+
+            if online_count == 0:
+                embed.description = "Niciun calculator online momentan."
+                embed.color = discord.Color.red()
 
             await interaction.followup.send(embed=embed, ephemeral=True)
 
