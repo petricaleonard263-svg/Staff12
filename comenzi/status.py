@@ -5,7 +5,7 @@ import requests
 import time
 
 BIN_ID = "6ae95ee3ac6210605a679435"
-API_KEY = "$2a$10$AuX5EfW.TJthVBUsPC7DY.Z9ZceMkoJYP18sRM9HrNbiwc.xx92Kq"
+API_KEY = "$2a$10$pXpnrii6P4eFEwd5JS9UP.BCpv8ocjkYMQ0MgkLju6zuHdwyayfKm"
 URL = f"https://api.jsonbin.io/v3/b/{BIN_ID}"
 HEADERS = {"X-Master-Key": API_KEY}
 
