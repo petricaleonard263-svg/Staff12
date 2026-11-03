@@ -20,7 +20,7 @@ class StatusCog(commands.Cog):
         try:
             res = requests.get(URL, headers=HEADERS, timeout=4)
             if res.status_code != 200:
-                await interaction.followup.send("❌ Nu s-au putut prelua datele din cloud.", ephemeral=True)
+                await interaction.followup.send("Nu s-au putut prelua datele din cloud.", ephemeral=True)
                 return
 
             resp_json = res.json()
