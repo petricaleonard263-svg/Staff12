@@ -4,7 +4,7 @@ from discord.ext import commands
 import requests
 import time
 
-BIN_ID = "https://api.jsonbin.io/v3/b/6ae95ee3ac6210605a679435"
+BIN_ID = "6ae95ee3ac6210605a679435"
 API_KEY = "$2a$10$AuX5EfW.TJthVBUsPC7DY.Z9ZceMkoJYP18sRM9HrNbiwc.xx92Kq"
 URL = f"https://api.jsonbin.io/v3/b/{BIN_ID}"
 HEADERS = {"X-Master-Key": API_KEY}
